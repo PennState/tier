@@ -10,6 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import edu.psu.injection.validator.Email;
 import edu.psu.swe.scim.spec.annotation.ScimAttribute;
 import edu.psu.swe.scim.spec.annotation.ScimResourceType;
+import edu.psu.swe.scim.spec.resources.ScimResource;
 import edu.psu.swe.scim.spec.resources.ScimUser;
 import edu.psu.swe.scim.spec.schema.Schema.Attribute.Returned;
 import edu.psu.swe.scim.spec.schema.Schema.Attribute.Type;
@@ -17,9 +18,10 @@ import edu.psu.swe.scim.spec.schema.Schema.Attribute.Type;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
 @ScimResourceType(id = EduPersonResource.RESOURCE_NAME, name = EduPersonResource.RESOURCE_NAME, schema = ScimUser.SCHEMA_URI, description = "Top level ScimUser", endpoint = "/EduPeople")
-public class EduPersonResource {
-  public static final String RESOURCE_NAME = "EduPerson";
+public class EduPersonResource extends ScimResource {
+
   public static final String SCHEMA_URI = "urn:internet2:params:scim:schemas:EduPerson";
+  public static final String RESOURCE_NAME = "EduPerson";
 
   @ScimAttribute(canonicalValues={"faculty", "student", "staff", "alum", "member", "affiliate", "employee", "library-walk-in"}, description="Specifies the person's relationship(s) to the institution in broad categories such as student, faculty, staff, alum, etc. (See controlled vocabulary). Notes If there is a value in eduPersonPrimaryAffiliation, that value MUST be asserted here as well.")
   @XmlElement
@@ -213,4 +215,14 @@ public class EduPersonResource {
   @ScimAttribute(description="Defined originally in X.509(96) and included in RFC2256.")
   @XmlElement
   private List<String> x500uniqueIdentifier;
+  
+  public EduPersonResource(String urn) {
+    super(urn);
+  }
+
+  @Override
+  public String getResourceType() {
+    return "EduPersonResource";
+  }
+
 }
