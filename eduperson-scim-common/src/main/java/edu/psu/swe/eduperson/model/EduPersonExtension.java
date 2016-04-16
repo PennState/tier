@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import edu.psu.injection.validator.Email;
 import edu.psu.swe.scim.spec.annotation.ScimAttribute;
-import edu.psu.swe.scim.spec.annotation.ScimResourceType;
+import edu.psu.swe.scim.spec.annotation.ScimExtensionType;
 import edu.psu.swe.scim.spec.resources.ScimResource;
 import edu.psu.swe.scim.spec.resources.ScimUser;
 import edu.psu.swe.scim.spec.schema.Schema.Attribute.Returned;
@@ -17,8 +17,8 @@ import edu.psu.swe.scim.spec.schema.Schema.Attribute.Type;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
-@ScimResourceType(id = EduPersonResource.RESOURCE_NAME, name = EduPersonResource.RESOURCE_NAME, schema = ScimUser.SCHEMA_URI, description = "Resource for representing Eduperson schema data", endpoint = "/EduPeople")
-public class EduPersonResource extends ScimResource {
+@ScimExtensionType(id = EduPersonExtension.RESOURCE_NAME, name = EduPersonExtension.RESOURCE_NAME, required = false, description = "Eduperson extension")
+public class EduPersonExtension extends ScimResource {
 
   public static final String SCHEMA_URI = "urn:internet2:params:scim:schemas:EduPerson";
   public static final String RESOURCE_NAME = "EduPerson";
@@ -216,7 +216,7 @@ public class EduPersonResource extends ScimResource {
   @XmlElement
   private List<String> x500uniqueIdentifier;
   
-  public EduPersonResource(String urn) {
+  public EduPersonExtension(String urn) {
     super(urn);
   }
 
