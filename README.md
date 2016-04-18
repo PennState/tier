@@ -29,11 +29,11 @@ Now, to test.  You can either use your favorite REST tool to send commands (such
 
 To see the schema's on the serve you can type:
 
-`curl -X GET -H "Cache-Control: no-cache" -H "Postman-Token: 3aa7381a-4188-7b64-b18a-a5368ad3f245" "http://localhost:8080/eduperson-scim/v2/Schemas"`
+`curl -X GET -H "Cache-Control: no-cache" "http://localhost:8080/eduperson-scim/v2/Schemas"`
 
 Or to get the ResourceTypes you can type:
 
-`curl -X GET -H "Cache-Control: no-cache" -H "Postman-Token: 3aa7381a-4188-7b64-b18a-a5368ad3f245" "http://localhost:8080/eduperson-scim/v2/ResourceTypes"`
+`curl -X GET -H "Cache-Control: no-cache" "http://localhost:8080/eduperson-scim/v2/ResourceTypes"`
 
 The example was built so that you can see both examples so there's more in the out of the box responses than is practical.  If you want to see one solution
 (only as a ResourceType) or the other (only as a ScimUser with an EduPerson extension) you can comment out one of the registration
