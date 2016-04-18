@@ -8,7 +8,7 @@ import javax.ws.rs.core.Application;
 
 import edu.psu.swe.scim.server.rest.ScimResourceHelper;
 
-@ApplicationPath("resources")
+@ApplicationPath("v2")
 public class MyApplication extends Application {
   
  @Override

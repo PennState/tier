@@ -87,6 +87,62 @@
           <skip>false</skip>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>io.fabric8</groupId>
+        <artifactId>docker-maven-plugin</artifactId>
+        <configuration>
+          <skip>false</skip>
+          <images>
+            <image>
+              <name>eduperson-scim-server</name>
+              <build>
+                <from>jboss/wildfly</from>
+                <tags>
+                  <tag>latest</tag>
+                  <tag>${project.version}</tag>
+                </tags>
+                <runCmds>
+                  <runCmd>/opt/jboss/wildfly/bin/add-user.sh vadmin vpassword --silent</runCmd>
+                </runCmds>
+                <cmd>
+                  <exec>
+                    <args>/opt/jboss/wildfly/bin/standalone.sh</args>
+                    <args>-b</args>
+                    <args>0.0.0.0</args>
+                    <args>-bmanagement</args>
+                    <args>0.0.0.0</args>
+                  </exec>
+                </cmd>
+                <ports>
+                  <port>8080</port>
+                  <port>9990</port>
+                </ports>
+                <assembly>
+                  <basedir>/opt/jboss/wildfly/standalone/deployments</basedir>
+                  <descriptorRef>artifact</descriptorRef>
+                </assembly>
+              </build>
+              <run>
+                <ports>
+                  <port>wildfly.port:8080</port>
+                  <port>wildfly.management.port:9990</port>
+                </ports>
+                <wait>
+                  <http>
+                    <url>http://localhost:${wildfly.port}/</url>
+                  </http>
+                  <time>60000</time>
+                </wait>
+                <log>
+                  <enabled>true</enabled>
+                  <prefix>Eduperson</prefix>
+                </log>
+              </run>
+            </image>
+          </images>
+        </configuration>
+
+      </plugin>
     </plugins>
   </build>
 

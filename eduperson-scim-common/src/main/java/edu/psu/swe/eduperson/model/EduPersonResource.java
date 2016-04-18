@@ -17,7 +17,7 @@ import edu.psu.swe.scim.spec.schema.Schema.Attribute.Type;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
-@ScimResourceType(id = EduPersonResource.RESOURCE_NAME, name = EduPersonResource.RESOURCE_NAME, schema = ScimUser.SCHEMA_URI, description = "Resource for representing Eduperson schema data", endpoint = "/EduPeople")
+@ScimResourceType(id = EduPersonResource.RESOURCE_NAME, name = EduPersonResource.RESOURCE_NAME, schema = EduPersonResource.SCHEMA_URI, description = "Resource for representing Eduperson schema data", endpoint = "/EduPeople")
 public class EduPersonResource extends ScimResource {
 
   public static final String SCHEMA_URI = "urn:internet2:params:scim:schemas:EduPerson";
@@ -216,8 +216,8 @@ public class EduPersonResource extends ScimResource {
   @XmlElement
   private List<String> x500uniqueIdentifier;
   
-  public EduPersonResource(String urn) {
-    super(urn);
+  public EduPersonResource() {
+    super(SCHEMA_URI);
   }
 
   @Override

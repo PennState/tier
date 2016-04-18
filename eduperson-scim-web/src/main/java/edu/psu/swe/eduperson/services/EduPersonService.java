@@ -3,8 +3,6 @@ package edu.psu.swe.eduperson.services;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.ejb.Stateless;
-
 import edu.psu.swe.eduperson.model.EduPersonResource;
 import edu.psu.swe.scim.server.exception.UnableToCreateResourceException;
 import edu.psu.swe.scim.server.exception.UnableToDeleteResourceException;
@@ -15,7 +13,6 @@ import edu.psu.swe.scim.server.provider.Provider;
 import edu.psu.swe.scim.spec.protocol.data.SearchRequest;
 import edu.psu.swe.scim.spec.resources.ScimExtension;
 
-@Stateless
 public class EduPersonService implements Provider<EduPersonResource> {
   
   @Override
