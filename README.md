@@ -2,7 +2,7 @@
 Workspace for implementing tier concepts
 
 This example was an attempt to illustrate what an the existing EduPerson schema would look like as either a new Scim Resource 
-or as an extension to ScimUser.  The code is built on top of the [Penn State Scim](https://github.com/PennState/scim) effort.  If you'd like to play yourself, the instructions for building are below.  If you'd just like to see what the ResourceType and Schema would look like, they can be found in the following [gist](https://gist.github.com/ussmith/3cb4217f32a387b11474d233212fef39).
+or as an extension to ScimUser.  The code is built on top of the [Penn State Scim](https://github.com/PennState/scim) effort.  If you'd like to play yourself, the instructions for building are below.  If you'd just like to see what the ResourceTypes and Schemas would look like, they can be found in the following [gist](https://gist.github.com/ussmith/3cb4217f32a387b11474d233212fef39).
 
 With some small work this example could be wired into an existing eduPerson implementation.
 
