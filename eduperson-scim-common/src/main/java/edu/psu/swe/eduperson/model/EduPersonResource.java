@@ -11,7 +11,6 @@ import edu.psu.injection.validator.Email;
 import edu.psu.swe.scim.spec.annotation.ScimAttribute;
 import edu.psu.swe.scim.spec.annotation.ScimResourceType;
 import edu.psu.swe.scim.spec.resources.ScimResource;
-import edu.psu.swe.scim.spec.resources.ScimUser;
 import edu.psu.swe.scim.spec.schema.Schema.Attribute.Returned;
 import edu.psu.swe.scim.spec.schema.Schema.Attribute.Type;
 

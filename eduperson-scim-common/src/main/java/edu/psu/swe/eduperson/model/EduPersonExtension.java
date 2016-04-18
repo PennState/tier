@@ -10,6 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import edu.psu.injection.validator.Email;
 import edu.psu.swe.scim.spec.annotation.ScimAttribute;
 import edu.psu.swe.scim.spec.annotation.ScimExtensionType;
+import edu.psu.swe.scim.spec.resources.ScimExtension;
 import edu.psu.swe.scim.spec.resources.ScimResource;
 import edu.psu.swe.scim.spec.resources.ScimUser;
 import edu.psu.swe.scim.spec.schema.Schema.Attribute.Returned;
@@ -17,8 +18,8 @@ import edu.psu.swe.scim.spec.schema.Schema.Attribute.Type;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
-@ScimExtensionType(id = EduPersonExtension.RESOURCE_NAME, name = EduPersonExtension.RESOURCE_NAME, required = false, description = "Eduperson extension")
-public class EduPersonExtension extends ScimResource {
+@ScimExtensionType(id = EduPersonExtension.SCHEMA_URI, name = EduPersonExtension.RESOURCE_NAME, required = false, description = "Eduperson extension")
+public class EduPersonExtension implements ScimExtension {
 
   public static final String SCHEMA_URI = "urn:internet2:params:scim:schemas:EduPerson";
   public static final String RESOURCE_NAME = "EduPerson";
@@ -215,14 +216,15 @@ public class EduPersonExtension extends ScimResource {
   @ScimAttribute(description="Defined originally in X.509(96) and included in RFC2256.")
   @XmlElement
   private List<String> x500uniqueIdentifier;
-  
-  public EduPersonExtension(String urn) {
-    super(urn);
+
+  @Override
+  public Class<? extends ScimResource> getBaseResource() {
+    return ScimUser.class;
   }
 
   @Override
-  public String getResourceType() {
-    return "EduPersonResource";
+  public String getUrn() {
+    return SCHEMA_URI;
   }
 
 }
