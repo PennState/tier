@@ -22,7 +22,9 @@ import edu.psu.swe.scim.spec.resources.PhoneNumber;
 import edu.psu.swe.scim.spec.resources.ScimExtension;
 import edu.psu.swe.scim.spec.resources.ScimUser;
 import edu.psu.swe.scim.spec.schema.Meta;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class ScimUserWithExtensionService implements Provider<ScimUser> {
 
   static Map<String, ScimUser> resourceMap = new HashMap<>();
@@ -140,6 +142,13 @@ public class ScimUserWithExtensionService implements Provider<ScimUser> {
 
   @Override
   public ScimUser get(String id) throws UnableToRetrieveResourceException {
+    
+    ScimUser user = resourceMap.get(id);
+    
+    if (user != null) {
+      log.warn("The user has " + user.getExtensions().size() + " extensions");
+    }
+    
     return resourceMap.get(id);
   }
 
