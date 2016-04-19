@@ -15,10 +15,14 @@ import edu.psu.swe.scim.spec.resources.ScimResource;
 import edu.psu.swe.scim.spec.resources.ScimUser;
 import edu.psu.swe.scim.spec.schema.Schema.Attribute.Returned;
 import edu.psu.swe.scim.spec.schema.Schema.Attribute.Type;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
 @ScimExtensionType(id = EduPersonExtension.SCHEMA_URI, name = EduPersonExtension.RESOURCE_NAME, required = false, description = "Eduperson extension")
+@Data
+@EqualsAndHashCode
 public class EduPersonExtension implements ScimExtension {
 
   public static final String SCHEMA_URI = "urn:internet2:params:scim:schemas:EduPerson";
@@ -122,7 +126,7 @@ public class EduPersonExtension implements ScimExtension {
 
   @ScimAttribute(description="locality name. LDIF example - l: Hudson Valley")
   @XmlElement
-  private List<String> l;
+  private List<String> locality;
 
   @ScimAttribute(description="Follow inetOrgPerson definition of RFC2079: \"Uniform Resource Identifier with optional label.\"  LDIF example - labeledURI: http://www.hsww.wiz/%7Eputter Harry's home page")
   @XmlElement 
