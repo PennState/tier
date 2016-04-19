@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.ws.rs.core.Response.Status;
+
 import edu.psu.swe.eduperson.model.EduPersonExtension;
 import edu.psu.swe.eduperson.model.EduPersonResource;
 import edu.psu.swe.scim.server.exception.UnableToCreateResourceException;
@@ -133,7 +135,7 @@ public class ScimUserWithExtensionService implements Provider<ScimUser> {
   public ScimUser update(ScimUser resource) throws UnableToUpdateResourceException {
     
     if (!resourceMap.containsKey(resource.getId())) {
-      throw new UnableToUpdateResourceException("404");
+      throw new UnableToUpdateResourceException(Status.NOT_FOUND, "No resource with id " + resource.getId() + " could be found");
     }
     
     resourceMap.put(resource.getId(), resource);

@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.ws.rs.core.Response.Status;
+
 import edu.psu.swe.eduperson.model.EduPersonResource;
 import edu.psu.swe.scim.server.exception.UnableToRetrieveExtensionsException;
 import edu.psu.swe.scim.server.exception.UnableToRetrieveResourceException;
@@ -70,8 +72,8 @@ public class EduPersonService implements Provider<EduPersonResource> {
 
   @Override
   public EduPersonResource update(EduPersonResource resource) throws UnableToUpdateResourceException {
-    if (resourceMap.containsKey(resource.getId())) {
-      throw new UnableToUpdateResourceException("CONFLICT");
+    if (!resourceMap.containsKey(resource.getId())) {
+      throw new UnableToUpdateResourceException(Status.NOT_FOUND, "No resource with id " + resource.getId() + " could be found");
     }
     
     resourceMap.put(resource.getId(), resource);
