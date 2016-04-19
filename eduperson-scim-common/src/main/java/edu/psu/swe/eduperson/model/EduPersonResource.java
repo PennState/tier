@@ -225,7 +225,7 @@ public class EduPersonResource extends ScimResource {
 
   @Override
   public String getResourceType() {
-    return "EduPersonResource";
+    return RESOURCE_NAME;
   }
 
 }

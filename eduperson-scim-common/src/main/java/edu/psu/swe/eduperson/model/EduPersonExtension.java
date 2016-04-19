@@ -25,7 +25,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode
 public class EduPersonExtension implements ScimExtension {
 
-  public static final String SCHEMA_URI = "urn:internet2:params:scim:schemas:EduPerson";
+  public static final String SCHEMA_URI = "urn:internet2:params:scim:schemas:EduPersonExtension";
   public static final String RESOURCE_NAME = "EduPerson";
 
   @ScimAttribute(canonicalValues={"faculty", "student", "staff", "alum", "member", "affiliate", "employee", "library-walk-in"}, description="Specifies the person's relationship(s) to the institution in broad categories such as student, faculty, staff, alum, etc. (See controlled vocabulary). Notes If there is a value in eduPersonPrimaryAffiliation, that value MUST be asserted here as well.")
