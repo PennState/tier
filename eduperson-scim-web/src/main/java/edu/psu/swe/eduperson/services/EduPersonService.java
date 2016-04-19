@@ -15,7 +15,9 @@ import edu.psu.swe.scim.server.provider.Provider;
 import edu.psu.swe.scim.spec.protocol.data.SearchRequest;
 import edu.psu.swe.scim.spec.resources.ScimExtension;
 import edu.psu.swe.scim.spec.schema.Meta;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class EduPersonService implements Provider<EduPersonResource> {
   
   static Map<String, EduPersonResource> resourceMap = new HashMap<>();
@@ -78,6 +80,11 @@ public class EduPersonService implements Provider<EduPersonResource> {
 
   @Override
   public EduPersonResource get(String id) {
+    EduPersonResource epr = resourceMap.get(id);
+    
+    if (epr == null) {
+      log.warn("No resource with id " + id + " exists");
+    }
     
     return resourceMap.get(id);
   }
