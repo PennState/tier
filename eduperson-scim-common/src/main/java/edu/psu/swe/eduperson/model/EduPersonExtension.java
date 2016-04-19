@@ -222,11 +222,6 @@ public class EduPersonExtension implements ScimExtension {
   private List<String> x500uniqueIdentifier;
 
   @Override
-  public Class<? extends ScimResource> getBaseResource() {
-    return ScimUser.class;
-  }
-
-  @Override
   public String getUrn() {
     return SCHEMA_URI;
   }
