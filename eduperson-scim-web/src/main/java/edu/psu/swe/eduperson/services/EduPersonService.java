@@ -17,6 +17,7 @@ import edu.psu.swe.scim.server.provider.Provider;
 import edu.psu.swe.scim.spec.protocol.data.SearchRequest;
 import edu.psu.swe.scim.spec.protocol.search.Filter;
 import edu.psu.swe.scim.spec.protocol.search.PageRequest;
+import edu.psu.swe.scim.spec.protocol.search.SortRequest;
 import edu.psu.swe.scim.spec.resources.ScimExtension;
 import edu.psu.swe.scim.spec.schema.Meta;
 import lombok.extern.slf4j.Slf4j;
@@ -111,7 +112,7 @@ public class EduPersonService implements Provider<EduPersonResource> {
   }
 
   @Override
-  public List<EduPersonResource> get(Filter filter, PageRequest pageRequest) throws UnableToRetrieveResourceException {
+  public List<EduPersonResource> get(Filter filter, PageRequest pageRequest, SortRequest sortRequest) throws UnableToRetrieveResourceException {
     return new ArrayList<EduPersonResource>(resourceMap.values());
   }
 }

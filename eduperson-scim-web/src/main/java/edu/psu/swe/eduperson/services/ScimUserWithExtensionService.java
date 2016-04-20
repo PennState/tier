@@ -20,6 +20,7 @@ import edu.psu.swe.scim.server.provider.Provider;
 import edu.psu.swe.scim.spec.protocol.data.SearchRequest;
 import edu.psu.swe.scim.spec.protocol.search.Filter;
 import edu.psu.swe.scim.spec.protocol.search.PageRequest;
+import edu.psu.swe.scim.spec.protocol.search.SortRequest;
 import edu.psu.swe.scim.spec.resources.Address;
 import edu.psu.swe.scim.spec.resources.Email;
 import edu.psu.swe.scim.spec.resources.Name;
@@ -236,7 +237,7 @@ public class ScimUserWithExtensionService implements Provider<ScimUser> {
   }
 
   @Override
-  public List<ScimUser> get(Filter filter, PageRequest pageRequest) throws UnableToRetrieveResourceException {
+  public List<ScimUser> get(Filter filter, PageRequest pageRequest, SortRequest sortRequest) throws UnableToRetrieveResourceException {
     return new ArrayList<ScimUser>(resourceMap.values());
   }
   
