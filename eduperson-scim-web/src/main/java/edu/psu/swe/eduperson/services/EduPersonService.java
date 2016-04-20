@@ -14,7 +14,6 @@ import edu.psu.swe.scim.server.exception.UnableToRetrieveExtensionsException;
 import edu.psu.swe.scim.server.exception.UnableToRetrieveResourceException;
 import edu.psu.swe.scim.server.exception.UnableToUpdateResourceException;
 import edu.psu.swe.scim.server.provider.Provider;
-import edu.psu.swe.scim.spec.protocol.data.SearchRequest;
 import edu.psu.swe.scim.spec.protocol.search.Filter;
 import edu.psu.swe.scim.spec.protocol.search.PageRequest;
 import edu.psu.swe.scim.spec.protocol.search.SortRequest;
@@ -106,13 +105,7 @@ public class EduPersonService implements Provider<EduPersonResource> {
   }
 
   @Override
-  public List<EduPersonResource> find(SearchRequest request) throws UnableToRetrieveResourceException {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  @Override
-  public List<EduPersonResource> get(Filter filter, PageRequest pageRequest, SortRequest sortRequest) throws UnableToRetrieveResourceException {
+  public List<EduPersonResource> find(Filter filter, PageRequest pageRequest, SortRequest sortRequest) throws UnableToRetrieveResourceException {
     return new ArrayList<EduPersonResource>(resourceMap.values());
   }
 }

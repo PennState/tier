@@ -17,7 +17,6 @@ import edu.psu.swe.scim.server.exception.UnableToRetrieveExtensionsException;
 import edu.psu.swe.scim.server.exception.UnableToRetrieveResourceException;
 import edu.psu.swe.scim.server.exception.UnableToUpdateResourceException;
 import edu.psu.swe.scim.server.provider.Provider;
-import edu.psu.swe.scim.spec.protocol.data.SearchRequest;
 import edu.psu.swe.scim.spec.protocol.search.Filter;
 import edu.psu.swe.scim.spec.protocol.search.PageRequest;
 import edu.psu.swe.scim.spec.protocol.search.SortRequest;
@@ -237,7 +236,7 @@ public class ScimUserWithExtensionService implements Provider<ScimUser> {
   }
 
   @Override
-  public List<ScimUser> get(Filter filter, PageRequest pageRequest, SortRequest sortRequest) throws UnableToRetrieveResourceException {
+  public List<ScimUser> find(Filter filter, PageRequest pageRequest, SortRequest sortRequest) throws UnableToRetrieveResourceException {
     return new ArrayList<ScimUser>(resourceMap.values());
   }
   
@@ -256,12 +255,6 @@ public class ScimUserWithExtensionService implements Provider<ScimUser> {
   @Override
   public void delete(String id) throws UnableToDeleteResourceException {
     resourceMap.remove(id);
-  }
-
-  @Override
-  public List<ScimUser> find(SearchRequest request) throws UnableToRetrieveResourceException {
-    // TODO Auto-generated method stub
-    return null;
   }
 
   @Override
