@@ -66,7 +66,7 @@ public class ScimUserWithExtensionService implements Provider<ScimUser> {
     epr.setTelephoneNumber(Arrays.asList("+44 01765 829374"));
     epr.setTitle(Arrays.asList("Walnut Warrior"));
 
-    scimUser.addExtension(EduPersonResource.SCHEMA_URI, epr);
+    scimUser.addExtension(EduPersonExtension.SCHEMA_URI, epr);
     
     scimUser.setActive(true);
     scimUser.setDisplayName(epr.getDisplayName());
@@ -156,7 +156,7 @@ public class ScimUserWithExtensionService implements Provider<ScimUser> {
     epr2.setTelephoneNumber(Arrays.asList("+44 01765 829374"));
     epr2.setTitle(Arrays.asList("Head Cheese"));
 
-    scimUser2.addExtension(EduPersonResource.SCHEMA_URI, epr2);
+    scimUser2.addExtension(EduPersonExtension.SCHEMA_URI, epr2);
     
     scimUser2.setActive(true);
     scimUser2.setDisplayName(epr.getDisplayName());

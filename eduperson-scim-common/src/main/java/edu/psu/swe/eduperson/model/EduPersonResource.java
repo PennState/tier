@@ -18,7 +18,7 @@ import lombok.EqualsAndHashCode;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
-@ScimResourceType(id = EduPersonResource.RESOURCE_NAME, name = EduPersonResource.RESOURCE_NAME, schema = EduPersonResource.SCHEMA_URI, description = "Resource for representing Eduperson schema data", endpoint = "/EduPeople")
+@ScimResourceType(id = EduPersonResource.SCHEMA_URI, name = EduPersonResource.RESOURCE_NAME, schema = EduPersonResource.SCHEMA_URI, description = "Resource for representing Eduperson schema data", endpoint = "/EduPeople")
 @Data
 @EqualsAndHashCode(callSuper=true)
 public class EduPersonResource extends ScimResource {
