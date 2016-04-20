@@ -10,13 +10,13 @@ import java.util.UUID;
 import javax.ws.rs.core.Response.Status;
 
 import edu.psu.swe.eduperson.model.EduPersonExtension;
-import edu.psu.swe.eduperson.model.EduPersonResource;
 import edu.psu.swe.scim.server.exception.UnableToCreateResourceException;
 import edu.psu.swe.scim.server.exception.UnableToDeleteResourceException;
 import edu.psu.swe.scim.server.exception.UnableToRetrieveExtensionsException;
 import edu.psu.swe.scim.server.exception.UnableToRetrieveResourceException;
 import edu.psu.swe.scim.server.exception.UnableToUpdateResourceException;
 import edu.psu.swe.scim.server.provider.Provider;
+import edu.psu.swe.scim.spec.exception.InvalidExtensionException;
 import edu.psu.swe.scim.spec.protocol.search.Filter;
 import edu.psu.swe.scim.spec.protocol.search.PageRequest;
 import edu.psu.swe.scim.spec.protocol.search.SortRequest;
@@ -34,7 +34,7 @@ public class ScimUserWithExtensionService implements Provider<ScimUser> {
 
   static Map<String, ScimUser> resourceMap = new HashMap<>();
   
-  public ScimUserWithExtensionService() {
+  public ScimUserWithExtensionService() throws InvalidExtensionException {
     ScimUser scimUser = new ScimUser();
     
     //Seed a simple resource
@@ -66,7 +66,7 @@ public class ScimUserWithExtensionService implements Provider<ScimUser> {
     epr.setTelephoneNumber(Arrays.asList("+44 01765 829374"));
     epr.setTitle(Arrays.asList("Walnut Warrior"));
 
-    scimUser.addExtension(EduPersonExtension.SCHEMA_URI, epr);
+    scimUser.addExtension(epr);
     
     scimUser.setActive(true);
     scimUser.setDisplayName(epr.getDisplayName());
@@ -156,7 +156,7 @@ public class ScimUserWithExtensionService implements Provider<ScimUser> {
     epr2.setTelephoneNumber(Arrays.asList("+44 01765 829374"));
     epr2.setTitle(Arrays.asList("Head Cheese"));
 
-    scimUser2.addExtension(EduPersonExtension.SCHEMA_URI, epr2);
+    scimUser2.addExtension(epr2);
     
     scimUser2.setActive(true);
     scimUser2.setDisplayName(epr.getDisplayName());
