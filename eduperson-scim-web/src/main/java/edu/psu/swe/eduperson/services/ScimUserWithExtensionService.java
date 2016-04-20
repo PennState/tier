@@ -1,5 +1,6 @@
 package edu.psu.swe.eduperson.services;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +18,8 @@ import edu.psu.swe.scim.server.exception.UnableToRetrieveResourceException;
 import edu.psu.swe.scim.server.exception.UnableToUpdateResourceException;
 import edu.psu.swe.scim.server.provider.Provider;
 import edu.psu.swe.scim.spec.protocol.data.SearchRequest;
+import edu.psu.swe.scim.spec.protocol.search.Filter;
+import edu.psu.swe.scim.spec.protocol.search.PageRequest;
 import edu.psu.swe.scim.spec.resources.Address;
 import edu.psu.swe.scim.spec.resources.Email;
 import edu.psu.swe.scim.spec.resources.Name;
@@ -120,6 +123,96 @@ public class ScimUserWithExtensionService implements Provider<ScimUser> {
     scimUser.setMeta(new Meta());
     
     resourceMap.put(scimUser.getId(), scimUser);
+    
+    //Seed a simple resource
+    
+    ScimUser scimUser2 = new ScimUser();
+    
+    EduPersonExtension epr2 = new EduPersonExtension();
+    epr.setAudio("RockinRodent1250");
+    epr.setCn("Ricky the Rat");
+    epr.setDescription("Rats are various medium-sized, long-tailed rodents of the superfamily Muroidea. \"True rats\" are members of the genus Rattus, the most important of which to humans are the black rat, Rattus rattus, and the brown rat, Rattus norvegicus. --Wikipedia");
+    epr.setDisplayName("Ricky the Rockin' Rat");
+    epr.setEduPersonAffiliation(Arrays.asList("student", "faculty"));
+    epr.setEduPersonNickname(Arrays.asList("Rat-a-Tat"));
+    epr.setEduPersonPrimaryAffiliation("faculty");
+    epr.setEduPersonPrincipalName("rtr10101@psu.edu");
+    epr.setGivenName(Arrays.asList("Ricky", "The"));
+    epr.setLocality(Arrays.asList("US"));
+    epr.setFacsimileTelephoneNumber(Arrays.asList("+44 01423 17698"));
+    epr.setHomePhone(Arrays.asList("+44 01765 987263"));
+    epr.setHomePostalAddress(Arrays.asList("7718 Sassafrass Way", "Severn", "Maryland"));
+    epr.setInitials(Arrays.asList("R", "T", "R"));
+    epr.setMail(Arrays.asList("hth10101@psu.edu"));
+    epr.setManager(Arrays.asList("Dougie The Dingo"));
+    epr.setMobile(Arrays.asList("+44 01423 8374954"));
+    epr.setOrganization(Arrays.asList("whole"));
+    epr.setOrganizationalUnitName(Arrays.asList("pit 2"));
+    epr.setPostalCode(Arrays.asList("56144"));
+    epr.setPreferredLanguage("French");
+    epr.setState(Arrays.asList("East Lothian"));
+    epr.setStreet(Arrays.asList("7718 Sassafrass Way"));
+    epr.setSurname(Arrays.asList("Rat"));
+    epr.setTelephoneNumber(Arrays.asList("+44 01765 829374"));
+    epr.setTitle(Arrays.asList("Head Cheese"));
+
+    scimUser2.addExtension(EduPersonResource.SCHEMA_URI, epr2);
+    
+    scimUser2.setActive(true);
+    scimUser2.setDisplayName(epr.getDisplayName());
+    Address address2 = new Address();
+    
+    address2.setCountry("US");
+    address2.setDisplay("7718 Sassafrass Way, Severn Md.  22144");
+    address2.setLocality("Centre");
+    address2.setRegion("PA");
+    address2.setPrimary(true);
+    address2.setStreetAddress("7718 Sassafrass Way");
+    address2.setType("home");
+    address2.setPostalCode("55144");
+    
+    scimUser2.setAddresses(Arrays.asList(address));
+    
+    Email email2 = new Email();
+    email2.setDisplay(epr.getEduPersonPrincipalName());
+    email2.setPrimary(true);
+    email2.setType("work");
+    email2.setValue(epr.getMail().get(0));
+    
+    scimUser2.setEmails(Arrays.asList(email2));
+    
+    scimUser2.setExternalId("1234567890");
+    scimUser2.setId("0987654321");
+    scimUser2.setLocale("USA");
+    
+    Name name2 = new Name();
+    name2.setFamilyName("Rat");
+    name2.setFormatted(epr.getDisplayName());
+    name2.setGivenName("Ricky");
+    name2.setHonorificPrefix("Dr");
+    name2.setMiddleName("The");
+    name2.setHonorificSuffix("IX");
+    
+    scimUser2.setName(name);
+    scimUser2.setNickName(epr.getEduPersonNickname().get(0));
+    
+    PhoneNumber pn2 = new PhoneNumber();
+    pn2.setDisplay("+44 01423 82739");
+    pn2.setPrimary(true);
+    pn2.setType("home");
+    pn2.setValue("+44 01423 82739");
+    
+    scimUser2.setPhoneNumbers(Arrays.asList(pn));
+    
+    scimUser2.setPreferredLanguage(epr.getPreferredLanguage());
+    scimUser2.setTimezone("EST");
+    scimUser2.setTitle(epr.getTitle().get(0));
+    scimUser2.setUserName("hth1010");
+    scimUser2.setUserType("Varmint");
+    
+    scimUser2.setMeta(new Meta());
+    
+    resourceMap.put(scimUser2.getId(), scimUser2);
   }
   
   @Override
@@ -142,6 +235,11 @@ public class ScimUserWithExtensionService implements Provider<ScimUser> {
     return resource;
   }
 
+  @Override
+  public List<ScimUser> get(Filter filter, PageRequest pageRequest) throws UnableToRetrieveResourceException {
+    return new ArrayList<ScimUser>(resourceMap.values());
+  }
+  
   @Override
   public ScimUser get(String id) throws UnableToRetrieveResourceException {
     

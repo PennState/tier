@@ -15,6 +15,8 @@ import edu.psu.swe.scim.server.exception.UnableToRetrieveResourceException;
 import edu.psu.swe.scim.server.exception.UnableToUpdateResourceException;
 import edu.psu.swe.scim.server.provider.Provider;
 import edu.psu.swe.scim.spec.protocol.data.SearchRequest;
+import edu.psu.swe.scim.spec.protocol.search.Filter;
+import edu.psu.swe.scim.spec.protocol.search.PageRequest;
 import edu.psu.swe.scim.spec.resources.ScimExtension;
 import edu.psu.swe.scim.spec.schema.Meta;
 import lombok.extern.slf4j.Slf4j;
@@ -106,5 +108,10 @@ public class EduPersonService implements Provider<EduPersonResource> {
   public List<EduPersonResource> find(SearchRequest request) throws UnableToRetrieveResourceException {
     // TODO Auto-generated method stub
     return null;
+  }
+
+  @Override
+  public List<EduPersonResource> get(Filter filter, PageRequest pageRequest) throws UnableToRetrieveResourceException {
+    return new ArrayList<EduPersonResource>(resourceMap.values());
   }
 }
