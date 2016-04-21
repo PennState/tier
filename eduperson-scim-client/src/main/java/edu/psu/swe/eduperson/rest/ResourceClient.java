@@ -12,16 +12,16 @@ import org.slf4j.LoggerFactory;
 public class ResourceClient  {
   private static final Logger LOG = LoggerFactory.getLogger(ResourceClient.class);
   
-  private String baseUrl_;
+  private String baseUrl;
 
   public ResourceClient(String url) {
-    baseUrl_ = url;
+    baseUrl = url;
   }
   
   public Response getDemo() {
     Client client = ClientBuilder.newClient();
 
-    WebTarget target = client.target(baseUrl_);
+    WebTarget target = client.target(baseUrl);
 
     Response resp = target.request().accept(MediaType.APPLICATION_JSON).get();
 
