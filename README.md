@@ -1,8 +1,35 @@
 # Penn State Tier Examples
+
 Workspace for implementing tier concepts
 
-This example was an attempt to illustrate what an the existing EduPerson schema would look like as either a new Scim Resource 
-or as an extension to ScimUser.  The code is built on top of the [Penn State Scim](https://github.com/PennState/scim) effort.  If you'd like to play yourself, the instructions for building are below.  If you'd just like to see what the ResourceTypes and Schemas would look like, they can be found in the following [gist](https://gist.github.com/ussmith/3cb4217f32a387b11474d233212fef39).
+This example was an attempt to illustrate what an the existing EduPerson schema
+would look like as either a new Scim Resource or as an extension to ScimUser.
+The code is built on top of the [Penn State Scim](https://github.com/PennState/scim)
+effort.
+
+## Demonstration system
+
+Penn State maintains a server running the current contents of this project.  The
+prototype TIER and SCIM resources can be found at the following URLs.
+
+-   https://scim.psu.edu/tier/v2/ServiceProviderConfig
+-   https://scim.psu.edu/tier/v2/ResourceTypes
+-   https://scim.psu.edu/tier/v2/Schemas
+-   https://scim.psu.edu/tier/v2/Users
+-   https://scim.psu.edu/tier/v2/Users/1234567890
+-   https://scim.psu.edu/tier/v2/EduPeople
+-   https://scim.psu.edu/tier/v2/EduPeople/1234567890
+
+This server uses memory-backed persistence, so inserts and updates will be lost
+during application restarts.  The GET and POST methods are currently supported.
+Feel free to create additional records for testing ... and if you find errors,
+report them via this project's GitHub issues.
+
+## Build and Run the TIER SCIM POC on your own machine
+
+If you'd like your own server, the instructions for building are below.  If you'd
+just like to see what the ResourceTypes and Schemas would look like, they can be
+found in the following [gist](https://gist.github.com/ussmith/3cb4217f32a387b11474d233212fef39).
 
 With some small work this example could be wired into an existing eduPerson implementation.
 
