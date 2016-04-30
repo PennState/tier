@@ -67,7 +67,6 @@ public class EduPersonService implements Provider<EduPersonResource> {
   
   @Override
   public EduPersonResource create(EduPersonResource resource) throws UnableToCreateResourceException {
-    
     UUID uuid = UUID.randomUUID();
     resource.setId(uuid.toString());
     
@@ -84,7 +83,9 @@ public class EduPersonService implements Provider<EduPersonResource> {
     meta.setLocation("https://scim.psu.edu/tier/v2/Users/" + uuid.toString());
     resource.setMeta(meta);
     
+    log.info("Adding resource to the resource map");
     resourceMap.put(resource.getId(), resource);
+    log.info("Resource added, there are now " + resourceMap.size() + " resources");
     return resource;
   }
 

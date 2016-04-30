@@ -1,5 +1,6 @@
 package edu.psu.swe.eduperson.services;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -220,7 +221,23 @@ public class ScimUserWithExtensionService implements Provider<ScimUser> {
     
     UUID uuid = UUID.randomUUID();
     resource.setId(uuid.toString());
+    
+    Meta meta = resource.getMeta();
+    
+    if (meta == null) {
+      meta = new Meta();
+    }
+    
+    LocalDateTime now = LocalDateTime.now();
+    meta.setCreated(now);
+    meta.setLastModified(now);
+    meta.setResourceType("User");
+    meta.setLocation("https://scim.psu.edu/tier/v2/Users/" + uuid.toString());
+    resource.setMeta(meta);
+    
     resourceMap.put (uuid.toString(), resource);
+    log.info("There are now " + resourceMap.size() + " resources available");
+
     return resource;
   }
 
@@ -230,6 +247,9 @@ public class ScimUserWithExtensionService implements Provider<ScimUser> {
     if (!resourceMap.containsKey(resource.getId())) {
       throw new UnableToUpdateResourceException(Status.NOT_FOUND, "No resource with id " + resource.getId() + " could be found");
     }
+    
+    Meta meta = resource.getMeta();
+    meta.setLastModified(LocalDateTime.now());
     
     resourceMap.put(resource.getId(), resource);
     return resource;
