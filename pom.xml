@@ -210,7 +210,7 @@
   <modules>
     <module>eduperson-scim-common</module>
     <module>eduperson-scim-web</module>
-    <module>eduperson-scim-client</module>
+<!--     <module>eduperson-scim-client</module> -->
   </modules>
 
 </project>

@@ -1,5 +1,6 @@
 package edu.psu.swe.eduperson.services;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -10,6 +11,7 @@ import java.util.UUID;
 import javax.ws.rs.core.Response.Status;
 
 import edu.psu.swe.eduperson.model.EduPersonResource;
+import edu.psu.swe.scim.server.exception.UnableToCreateResourceException;
 import edu.psu.swe.scim.server.exception.UnableToRetrieveExtensionsException;
 import edu.psu.swe.scim.server.exception.UnableToRetrieveResourceException;
 import edu.psu.swe.scim.server.exception.UnableToUpdateResourceException;
@@ -64,10 +66,24 @@ public class EduPersonService implements Provider<EduPersonResource> {
   }
   
   @Override
-  public EduPersonResource create(EduPersonResource resource) {
+  public EduPersonResource create(EduPersonResource resource) throws UnableToCreateResourceException {
     
     UUID uuid = UUID.randomUUID();
     resource.setId(uuid.toString());
+    
+    Meta meta = resource.getMeta();
+    
+    if (meta == null) {
+      meta = new Meta();
+    }
+    
+    LocalDateTime now = LocalDateTime.now();
+    meta.setCreated(now);
+    meta.setLastModified(now);
+    meta.setResourceType("User");
+    meta.setLocation("https://scim.psu.edu/tier/v2/Users/" + uuid.toString());
+    resource.setMeta(meta);
+    
     resourceMap.put(resource.getId(), resource);
     return resource;
   }
@@ -78,6 +94,8 @@ public class EduPersonService implements Provider<EduPersonResource> {
       throw new UnableToUpdateResourceException(Status.NOT_FOUND, "No resource with id " + resource.getId() + " could be found");
     }
     
+    Meta meta = resource.getMeta();
+    meta.setLastModified(LocalDateTime.now());
     resourceMap.put(resource.getId(), resource);
     return resource;
   }
