@@ -26,8 +26,11 @@ import edu.psu.swe.scim.spec.resources.Email;
 import edu.psu.swe.scim.spec.resources.Name;
 import edu.psu.swe.scim.spec.resources.PhoneNumber;
 import edu.psu.swe.scim.spec.resources.ScimExtension;
+import edu.psu.swe.scim.spec.resources.ScimGroup;
 import edu.psu.swe.scim.spec.resources.ScimUser;
 import edu.psu.swe.scim.spec.schema.Meta;
+import edu.psu.swe.scim.spec.schema.ResourceReference;
+import edu.psu.swe.scim.spec.schema.ResourceReference.ReferenceType;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -213,6 +216,17 @@ public class ScimUserWithExtensionService implements Provider<ScimUser> {
     
     scimUser2.setMeta(new Meta());
     
+    ScimGroup group = new ScimGroup();
+    group.setId("123-ABC-456-DEF-780-GHI");
+    group.setDisplayName("Team Unicorn");
+    group.setExternalId(UUID.randomUUID().toString());
+    
+    ResourceReference rr = new ResourceReference();
+    rr.setDisplay("Team Unicorn");
+    rr.setRef("../Groups/123-ABC-456-DEF-780-GHI");
+    rr.setType(ReferenceType.DIRECT);
+    rr.setValue("123-ABC-456-DEF-780-GHI");
+    scimUser2.setGroups(Arrays.asList(rr));
     resourceMap.put(scimUser2.getId(), scimUser2);
   }
   
