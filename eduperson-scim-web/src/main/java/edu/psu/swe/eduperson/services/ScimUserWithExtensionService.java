@@ -26,7 +26,6 @@ import edu.psu.swe.scim.spec.resources.Email;
 import edu.psu.swe.scim.spec.resources.Name;
 import edu.psu.swe.scim.spec.resources.PhoneNumber;
 import edu.psu.swe.scim.spec.resources.ScimExtension;
-import edu.psu.swe.scim.spec.resources.ScimGroup;
 import edu.psu.swe.scim.spec.resources.ScimUser;
 import edu.psu.swe.scim.spec.schema.Meta;
 import edu.psu.swe.scim.spec.schema.ResourceReference;
@@ -216,17 +215,13 @@ public class ScimUserWithExtensionService implements Provider<ScimUser> {
     
     scimUser2.setMeta(new Meta());
     
-    ScimGroup group = new ScimGroup();
-    group.setId("123-ABC-456-DEF-780-GHI");
-    group.setDisplayName("Team Unicorn");
-    group.setExternalId(UUID.randomUUID().toString());
-    
     ResourceReference rr = new ResourceReference();
     rr.setDisplay("Team Unicorn");
     rr.setRef("../Groups/123-ABC-456-DEF-780-GHI");
     rr.setType(ReferenceType.DIRECT);
     rr.setValue("123-ABC-456-DEF-780-GHI");
     scimUser2.setGroups(Arrays.asList(rr));
+    
     resourceMap.put(scimUser2.getId(), scimUser2);
   }
   
@@ -249,6 +244,7 @@ public class ScimUserWithExtensionService implements Provider<ScimUser> {
     meta.setLocation("https://scim.psu.edu/tier/v2/Users/" + uuid.toString());
     resource.setMeta(meta);
     
+    log.info("Adding " + uuid.toString() + " to the backing store");
     resourceMap.put (uuid.toString(), resource);
     log.info("There are now " + resourceMap.size() + " resources available");
 
@@ -277,13 +273,15 @@ public class ScimUserWithExtensionService implements Provider<ScimUser> {
   @Override
   public ScimUser get(String id) throws UnableToRetrieveResourceException {
     
+    log.info("Attempting to get user " + id + " from the resources(" + resourceMap.size() + ") exists? " + resourceMap.containsKey(id));
+    
     ScimUser user = resourceMap.get(id);
     
     if (user != null) {
       log.warn("The user has " + user.getExtensions().size() + " extensions");
     }
     
-    return resourceMap.get(id);
+    return user;
   }
 
   @Override
