@@ -12,7 +12,6 @@ import edu.psu.swe.scim.spec.annotation.ScimAttribute;
 import edu.psu.swe.scim.spec.annotation.ScimResourceType;
 import edu.psu.swe.scim.spec.resources.ScimResource;
 import edu.psu.swe.scim.spec.schema.Schema.Attribute.Returned;
-import edu.psu.swe.scim.spec.schema.Schema.Attribute.Type;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -26,7 +25,7 @@ public class EduPersonResource extends ScimResource {
   public static final String SCHEMA_URI = "urn:internet2:params:scim:schemas:EduPerson";
   public static final String RESOURCE_NAME = "EduPerson";
 
-  @ScimAttribute(canonicalValues={"faculty", "student", "staff", "alum", "member", "affiliate", "employee", "library-walk-in"}, description="Specifies the person's relationship(s) to the institution in broad categories such as student, faculty, staff, alum, etc. (See controlled vocabulary). Notes If there is a value in eduPersonPrimaryAffiliation, that value MUST be asserted here as well.")
+  @ScimAttribute(canonicalValueList={"faculty", "student", "staff", "alum", "member", "affiliate", "employee", "library-walk-in"}, description="Specifies the person's relationship(s) to the institution in broad categories such as student, faculty, staff, alum, etc. (See controlled vocabulary). Notes If there is a value in eduPersonPrimaryAffiliation, that value MUST be asserted here as well.")
   @XmlElement
   private List<String> eduPersonAffiliation;
  
@@ -46,7 +45,7 @@ public class EduPersonResource extends ScimResource {
   @XmlElement
   private List<String> eduPersonOrgUnitDN;
 
-  @ScimAttribute(canonicalValues={"faculty", "student", "staff", "alum", "member", "affiliate", "employee", "library-walk-in"}, description="Person's nickname, or the informal name by which they are accustomed to be hailed. LDAP Example - eduPersonPrimaryAffiliation: student")
+  @ScimAttribute(canonicalValueList={"faculty", "student", "staff", "alum", "member", "affiliate", "employee", "library-walk-in"}, description="Person's nickname, or the informal name by which they are accustomed to be hailed. LDAP Example - eduPersonPrimaryAffiliation: student")
   @XmlElement
   private String eduPersonPrimaryAffiliation;
 
@@ -118,7 +117,7 @@ public class EduPersonResource extends ScimResource {
   @XmlElement
   private List<String> initials;
 
-  @ScimAttribute(type=Type.BINARY, description="Follow inetOrgPerson definition of RFC2798: \"Used to store one or more images of a person using the JPEG File Interchange Format [JFIF].\"")
+  @ScimAttribute(description="Follow inetOrgPerson definition of RFC2798: \"Used to store one or more images of a person using the JPEG File Interchange Format [JFIF].\"")
   @XmlElement
   private List<Byte[]> jpegPhoto;
 

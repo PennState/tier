@@ -30,6 +30,7 @@
     <dependency>
       <groupId>edu.psu.libraries</groupId>
       <artifactId>commons-psu</artifactId>
+      <version>1.9.8-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>edu.psu.swe.swagger</groupId>
