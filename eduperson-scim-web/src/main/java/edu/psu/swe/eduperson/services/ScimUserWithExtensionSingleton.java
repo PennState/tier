@@ -10,6 +10,7 @@ import java.util.UUID;
 
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.core.Response.Status;
 
 import edu.psu.swe.eduperson.model.EduPersonExtension;
@@ -34,8 +35,7 @@ import edu.psu.swe.scim.spec.schema.ResourceReference.ReferenceType;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Singleton
-@Startup
+@ApplicationScoped
 public class ScimUserWithExtensionSingleton  {
 
   static Map<String, ScimUser> resourceMap = new HashMap<>();

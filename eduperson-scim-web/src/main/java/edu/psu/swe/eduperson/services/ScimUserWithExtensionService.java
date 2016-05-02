@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import lombok.extern.slf4j.Slf4j;
 import edu.psu.swe.eduperson.model.EduPersonExtension;
 import edu.psu.swe.scim.server.exception.UnableToCreateResourceException;
 import edu.psu.swe.scim.server.exception.UnableToDeleteResourceException;
@@ -18,7 +19,6 @@ import edu.psu.swe.scim.spec.protocol.search.PageRequest;
 import edu.psu.swe.scim.spec.protocol.search.SortRequest;
 import edu.psu.swe.scim.spec.resources.ScimExtension;
 import edu.psu.swe.scim.spec.resources.ScimUser;
-import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class ScimUserWithExtensionService implements Provider<ScimUser> {
