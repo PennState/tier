@@ -294,6 +294,10 @@ ScimUser scimUser = new ScimUser();
 
     log.info("Request to update id " + resource.getId() + " received");
     Meta meta = resource.getMeta();
+    if (meta == null) {
+      meta = new Meta();
+      //TODO - Should we do this or error out?
+    }
     meta.setLastModified(LocalDateTime.now());
     log.info("Set meta last modified to " + meta.getLastModified());
 
