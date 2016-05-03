@@ -22,6 +22,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper=true)
 public class EduPersonResource extends ScimResource {
 
+  private static final long serialVersionUID = 4902219035326061463L;
   public static final String SCHEMA_URI = "urn:internet2:params:scim:schemas:EduPerson";
   public static final String RESOURCE_NAME = "EduPerson";
 
