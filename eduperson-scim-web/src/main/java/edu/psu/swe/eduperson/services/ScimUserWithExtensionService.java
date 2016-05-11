@@ -32,7 +32,7 @@ public class ScimUserWithExtensionService implements Provider<ScimUser> {
   }
   
   @Override
-  public ScimUser update(ScimUser resource) throws UnableToUpdateResourceException {
+  public ScimUser update(String id, ScimUser resource) throws UnableToUpdateResourceException {
     return singleton.update(resource);
   }
 
