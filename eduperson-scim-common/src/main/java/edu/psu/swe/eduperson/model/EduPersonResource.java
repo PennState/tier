@@ -7,7 +7,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import edu.psu.injection.validator.Email;
 import edu.psu.swe.scim.spec.annotation.ScimAttribute;
 import edu.psu.swe.scim.spec.annotation.ScimResourceType;
 import edu.psu.swe.scim.spec.resources.ScimResource;
@@ -132,7 +131,7 @@ public class EduPersonResource extends ScimResource {
 
   @ScimAttribute(description="From RFC4524: The 'mail' (rfc822mailbox) attribute type holds Internet mail addresses in Mailbox [RFC2821] form (e.g., user@example.com). LDIF example - mail: dumbledore@hsww.wiz")
   @XmlElement 
-  @Email
+  //@Email
   private List<String> mail;
 
   @ScimAttribute(description="From RFC4524: \"The 'manager' attribute specifies managers, by distinguished name, of the person (or entity).\" LDIF example - manager: uid=twilliams, ou=people, dc=hobart, dc=edu")

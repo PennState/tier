@@ -32,9 +32,9 @@
       <version>1.14.8</version>
     </dependency>
     <dependency>
-      <groupId>edu.psu.libraries</groupId>
-      <artifactId>commons-psu</artifactId>
-      <version>1.9.8-SNAPSHOT</version>
+    	<groupId>edu.psu.swe.commons</groupId>
+    	<artifactId>commons-jaxrs</artifactId>
+    	<version>1.9.7</version>
     </dependency>
   </dependencies>
 
