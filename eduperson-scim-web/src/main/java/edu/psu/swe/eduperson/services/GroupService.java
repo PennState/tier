@@ -75,7 +75,7 @@ public class GroupService implements Provider<ScimGroup> {
   }
 
   @Override
-  public ScimGroup update(ScimGroup resource) throws UnableToUpdateResourceException {
+  public ScimGroup update(String id, ScimGroup resource) throws UnableToUpdateResourceException {
     ScimGroup group = groupMap.get(resource.getId());
     
     if (group == null) {

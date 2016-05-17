@@ -1,5 +1,9 @@
 package edu.psu.swe.eduperson.services;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,8 +12,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.ejb.Singleton;
-import javax.ejb.Startup;
 import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.core.Response.Status;
 
@@ -41,7 +43,7 @@ public class ScimUserWithExtensionSingleton  {
   static Map<String, ScimUser> resourceMap = new HashMap<>();
 
   public ScimUserWithExtensionSingleton() {
-ScimUser scimUser = new ScimUser();
+    ScimUser scimUser = new ScimUser();
     
     //Seed a simple resource
     EduPersonExtension epr = new EduPersonExtension();
@@ -286,13 +288,13 @@ ScimUser scimUser = new ScimUser();
     return resource;
   }
 
-  public ScimUser update(ScimUser resource) throws UnableToUpdateResourceException {
+  public ScimUser update(String id, ScimUser resource) throws UnableToUpdateResourceException {
 
     if (!resourceMap.containsKey(resource.getId())) {
       throw new UnableToUpdateResourceException(Status.NOT_FOUND, "No resource with id " + resource.getId() + " could be found");
     }
 
-    log.info("Request to update id " + resource.getId() + " received");
+    log.info("Request to update id " + id + " received");
     Meta meta = resource.getMeta();
     if (meta == null) {
       meta = new Meta();
@@ -302,12 +304,32 @@ ScimUser scimUser = new ScimUser();
     log.info("Set meta last modified to " + meta.getLastModified());
 
     log.info("Replacing the resource");
+    
+    //Check for an id change
+    String newId = resource.getId();
+    if (!newId.equals(id)) {
+      resourceMap.remove(id);
+    }
     resourceMap.put(resource.getId(), resource);
     log.info("Replaced the resource");
 
     ScimUser su = resourceMap.get(resource.getId());
     log.info(su.getName().getFamilyName());
-    return resource;
+    
+    ScimUser copy = null;
+    try {
+      final ByteArrayOutputStream baos = new ByteArrayOutputStream(2048);
+      final ObjectOutputStream oos = new ObjectOutputStream(baos);
+      oos.writeObject(resource);
+      oos.close();
+
+      final ObjectInputStream ois = new ObjectInputStream(
+              new ByteArrayInputStream(baos.toByteArray()));
+      copy = (ScimUser) ois.readObject();
+  } catch (final Exception e) {
+      throw new RuntimeException("Cloning failed");
+  }
+    return copy;
   }
 
   public List<ScimUser> find(Filter filter, PageRequest pageRequest, SortRequest sortRequest) throws UnableToRetrieveResourceException {

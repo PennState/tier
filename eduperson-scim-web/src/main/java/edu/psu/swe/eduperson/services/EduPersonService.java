@@ -90,7 +90,7 @@ public class EduPersonService implements Provider<EduPersonResource> {
   }
 
   @Override
-  public EduPersonResource update(EduPersonResource resource) throws UnableToUpdateResourceException {
+  public EduPersonResource update(String id, EduPersonResource resource) throws UnableToUpdateResourceException {
     if (!resourceMap.containsKey(resource.getId())) {
       throw new UnableToUpdateResourceException(Status.NOT_FOUND, "No resource with id " + resource.getId() + " could be found");
     }
