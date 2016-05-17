@@ -17,6 +17,7 @@
     <htDocsLocation>/var/lib/jenkins/htroot</htDocsLocation>
     <build.number>SNAPSHOT</build.number>
     <slf4j.version>1.7.12</slf4j.version>
+    <swagger.version>1.5.0</swagger.version>
   </properties>
 
   <dependencyManagement>
