@@ -16,7 +16,7 @@ public class MyApplication extends Application {
     Set<Class<?>> clazzes = new HashSet<Class<?>>();
 
     clazzes.addAll(ScimResourceHelper.getScimClassesToLoad());
-    //clazzes.add(EduPersonRestResource.class);
+    clazzes.add(EduPersonRestResourceImpl.class);
     
     clazzes.addAll(ScimResourceHelper.getSwaggerClassesToLoad());
 
