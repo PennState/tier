@@ -11,7 +11,7 @@ import edu.psu.swe.scim.server.provider.ProviderRegistry;
 import edu.psu.swe.scim.server.rest.BaseResourceTypeResourceImpl;
 
 @Path("EduPeople")
-@Api("ResourceType")
+//@Api("ResourceType")
 public class EduPersonRestResource extends BaseResourceTypeResourceImpl<EduPersonResource> {
   
   @Inject
