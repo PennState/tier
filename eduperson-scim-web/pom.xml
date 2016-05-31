@@ -28,9 +28,8 @@
       <artifactId>slf4j-api</artifactId>
     </dependency>
     <dependency>
-      <groupId>edu.psu.libraries</groupId>
-      <artifactId>commons-psu</artifactId>
-      <version>1.9.8-SNAPSHOT</version>
+      <groupId>edu.psu.swe.commons</groupId>
+      <artifactId>commons-jaxrs</artifactId>
     </dependency>
     <dependency>
       <groupId>edu.psu.swe.swagger</groupId>

@@ -27,9 +27,9 @@
         <version>7.0</version>
       </dependency>
       <dependency>
-        <groupId>edu.psu.libraries</groupId>
-        <artifactId>commons-psu</artifactId>
-        <version>1.9.5-SNAPSHOT</version>
+        <groupId>edu.psu.swe.commons</groupId>
+        <artifactId>commons-jaxrs</artifactId>
+        <version>1.10</version>
       </dependency>
       <dependency>
         <groupId>edu.psu.swe.swagger</groupId>
